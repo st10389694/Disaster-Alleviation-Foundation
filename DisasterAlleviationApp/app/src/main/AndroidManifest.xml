@@ -1,0 +1,19 @@
+<manifest package="za.ac.innosphere.disaster" xmlns:android="http://schemas.android.com/apk/res/android">
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:label="DisasterAlleviation"
+        android:theme="@style/Theme.Disaster">
+        <activity android:name=".ui.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.auth.LoginActivity"/>
+        <activity android:name=".ui.auth.RegisterActivity"/>
+        <activity android:name=".ui.ReportActivity"/>
+        <activity android:name=".ui.DonateActivity"/>
+        <activity android:name=".ui.VolunteerActivity"/>
+    </application>
+</manifest>

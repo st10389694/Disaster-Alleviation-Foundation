@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Placeholder gradlew. Replace with real Gradle wrapper when opening in Android Studio.
+echo "Run Gradle from Android Studio or add the Gradle wrapper."
