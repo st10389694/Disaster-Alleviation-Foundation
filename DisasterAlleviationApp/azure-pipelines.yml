@@ -1,3 +1,4 @@
+
 trigger:
   branches:
     include:
@@ -5,13 +6,31 @@ trigger:
       - develop
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'macos-latest'   
+
+variables:
+  ANDROID_HOME: $(JAVA_HOME_11_X64)/android-sdk
+  GRADLE_USER_HOME: $(Pipeline.Workspace)/.gradle
 
 steps:
 - task: Gradle@2
+  displayName: "Build Debug APK"
   inputs:
     gradleWrapperFile: 'gradlew'
     gradleOptions: '-Xmx3072m'
     publishJUnitResults: true
     testResultsFiles: '**/TEST-*.xml'
     tasks: 'assembleDebug'
+
+- task: CopyFiles@2
+  displayName: "Copy APK to artifact staging"
+  inputs:
+    contents: '**/*.apk'
+    targetFolder: '$(Build.ArtifactStagingDirectory)'
+
+- task: PublishBuildArtifacts@1
+  displayName: "Publish APK"
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
